@@ -1,8 +1,11 @@
 package approvalsandchecks
 
 import (
+	"strconv"
+
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+	"github.com/microsoft/azure-devops-go-api/azuredevops/pipelineschecks"
 	"github.com/microsoft/terraform-provider-azuredevops/azuredevops/internal/utils/suppress"
 )
 
@@ -44,4 +47,16 @@ func getRequiredTemplateSchema() map[string]*schema.Schema {
 			Description: "path to the yaml file",
 		},
 	}
+}
+
+
+func expandRequiredTemplateCheck(d *schema.ResourceData) (*pipelineschecks.CheckConfiguration, string, error) {
+	// inputs := map[string]interface{}{
+	// 	"allowedBranches":          d.Get("allowed_branches").(string),
+	// 	"ensureProtectionOfBranch": strconv.FormatBool(d.Get("verify_branch_protection").(bool)),
+	// 	"allowUnknownStatusBranch": strconv.FormatBool(d.Get("ignore_unknown_protection_status").(bool)),
+	// }
+
+	inputs := pipelineschecks.CheckConfiguration{}
+	return doBaseExpansion(d, inputs, evaluateBranchProtectionDef)
 }
