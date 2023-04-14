@@ -50,6 +50,7 @@ func getRequiredTemplateSchema() map[string]*schema.Schema {
 }
 
 
+// as said here https://stackoverflow.com/questions/61471634/add-remove-pipeline-checks-using-rest-api the doc do not exists and only sniffint http requests is available to discover body schema
 func expandRequiredTemplateCheck(d *schema.ResourceData) (*pipelineschecks.CheckConfiguration, string, error) {
 	// inputs := map[string]interface{}{
 	// 	"allowedBranches":          d.Get("allowed_branches").(string),
@@ -57,6 +58,14 @@ func expandRequiredTemplateCheck(d *schema.ResourceData) (*pipelineschecks.Check
 	// 	"allowUnknownStatusBranch": strconv.FormatBool(d.Get("ignore_unknown_protection_status").(bool)),
 	// }
 
-	inputs := pipelineschecks.CheckConfiguration{}
+  re
+	inputs := map[string]interface{}{
+		"required_yaml_templates": []map[string]interface{}{
+map[string]interface{}{
+
+      }
+    },
+	}
+
 	return doBaseExpansion(d, inputs, evaluateBranchProtectionDef)
 }
