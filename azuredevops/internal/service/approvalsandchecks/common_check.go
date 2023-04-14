@@ -226,7 +226,7 @@ func genCheckDeleteFunc() schema.DeleteFunc { //nolint:staticcheck
 		}
 
 		clients := m.(*client.AggregatedClient)
-		projectID, BusinessHoursID, err := tfhelper.ParseProjectIDAndResourceID(d)
+		projectID, taskCheckId, err := tfhelper.ParseProjectIDAndResourceID(d)
 		if err != nil {
 			return err
 		}
@@ -234,7 +234,7 @@ func genCheckDeleteFunc() schema.DeleteFunc { //nolint:staticcheck
 		return clients.V5PipelinesChecksClient.DeleteCheckConfiguration(m.(*client.AggregatedClient).Ctx,
 			pipelineschecks.DeleteCheckConfigurationArgs{
 				Project: &projectID,
-				Id:      &BusinessHoursID,
+				Id:      &taskCheckId,
 			})
 	}
 }
