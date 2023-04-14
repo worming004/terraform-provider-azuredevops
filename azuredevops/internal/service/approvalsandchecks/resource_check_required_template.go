@@ -29,7 +29,19 @@ func getRequiredTemplateSchema() map[string]*schema.Schema {
 			DiffSuppressFunc: suppress.CaseDifference,
 			ValidateFunc:     validation.StringInSlice([]string{"Azure Repos", "GitHub", "Bitbucket"}, false),
 			Default:          "Azure Repos",
-			Description:      "repository host",
+			Description:      "type of repository host",
 		},
+		"repository": {
+			Type:        schema.TypeString,
+			Description: "repository in project/repository-name",
+		},
+		"ref": {
+			Type:        schema.TypeString,
+			Description: "git ref, for example refs/tags/release/v1",
+		},
+    "path_to_required_yaml_template": {
+			Type:        schema.TypeString,
+			Description: "path to the yaml file",
+    },
 	}
 }

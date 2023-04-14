@@ -9,5 +9,5 @@ import (
 func TestResourceCheckRequiredTemplate(t *testing.T) {
 	schema := ResourceCheckRequiredTemplate()
 
-  require.Equal(t, 5, len(schema.Schema))
+	require.Equal(t, 5, len(schema.Schema))
 }
