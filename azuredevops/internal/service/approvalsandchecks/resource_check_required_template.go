@@ -15,7 +15,7 @@ func ResourceCheckRequiredTemplate() *schema.Resource {
 		MinItems: 1,
 		Elem: &schema.Schema{
 			Type: schema.TypeSet,
-			Elem: map[string]*schema.Schema{},
+			Elem: getRequiredTemplateSchema(),
 		},
 	}
 
@@ -39,9 +39,9 @@ func getRequiredTemplateSchema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "git ref, for example refs/tags/release/v1",
 		},
-    "path_to_required_yaml_template": {
+		"path_to_required_yaml_template": {
 			Type:        schema.TypeString,
 			Description: "path to the yaml file",
-    },
+		},
 	}
 }
